@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34928.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{26985A26-B9D7-484A-ACA0-7231382082DC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AAE8B5C-FBAB-4812-A1A8-28C20659A635}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unit", "unit", "{1CE32930-4094-4483-B5FF-E8A5A03DF79A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.FilesApi.Client.SDK", "src\AStar.FilesApi.Client.SDK\AStar.FilesApi.Client.SDK.csproj", "{8BF74047-9DC8-42F0-A234-2D4A7270031F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AStar.FilesApi.Client.SDK.Unit.Tests", "tests\unit\AStar.FilesApi.Client.SDK.Unit.Tests\AStar.FilesApi.Client.SDK.Unit.Tests.csproj", "{87DC6DDE-91F9-4F0D-8136-67518AD17293}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8BF74047-9DC8-42F0-A234-2D4A7270031F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BF74047-9DC8-42F0-A234-2D4A7270031F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BF74047-9DC8-42F0-A234-2D4A7270031F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BF74047-9DC8-42F0-A234-2D4A7270031F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87DC6DDE-91F9-4F0D-8136-67518AD17293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87DC6DDE-91F9-4F0D-8136-67518AD17293}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87DC6DDE-91F9-4F0D-8136-67518AD17293}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87DC6DDE-91F9-4F0D-8136-67518AD17293}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1CE32930-4094-4483-B5FF-E8A5A03DF79A} = {0AAE8B5C-FBAB-4812-A1A8-28C20659A635}
+		{8BF74047-9DC8-42F0-A234-2D4A7270031F} = {26985A26-B9D7-484A-ACA0-7231382082DC}
+		{87DC6DDE-91F9-4F0D-8136-67518AD17293} = {1CE32930-4094-4483-B5FF-E8A5A03DF79A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A174BAD9-B716-4CD7-A254-8FB0E0C50A23}
+	EndGlobalSection
+EndGlobal
