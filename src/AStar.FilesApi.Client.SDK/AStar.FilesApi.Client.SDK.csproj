@@ -6,7 +6,37 @@
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>$(MSBuildProjectName).xml</DocumentationFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>0.2.0</Version>
+    <Company>AStar Dev</Company>
+    <Copyright>AStar Dev 2024</Copyright>
+    <PackageIcon>AStar.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <IncludeSymbols>True</IncludeSymbols>
+    <Authors>Jason Barden</Authors>
+    <Description>This package contans the SDK for access the Files AStar API.
+It is not intended for public use but is available if it helps you.</Description>
+    <PackageProjectUrl>https://github.com/jbarden/astar-filesapi-client-sdk</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jbarden/astar-filesapi-client-sdk.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\AStar.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AStar.Api.HealthChecks" Version="0.3.0" />

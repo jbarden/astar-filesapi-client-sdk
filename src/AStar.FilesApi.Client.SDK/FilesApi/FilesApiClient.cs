@@ -25,7 +25,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
                                 ? (await JsonSerializer.DeserializeAsync<HealthStatusResponse>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions))!
                                 : new() { Status = "Health Check failed." }!;
         }
-        catch (HttpRequestException ex)
+        catch(HttpRequestException ex)
         {
             logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
 
@@ -123,7 +123,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
     /// The GetFileDetail method will, as its name suggests, get the file details of the specified file.
     /// </summary>
     /// <param name="fileId">The Id of the file detail to retrieve from the database.</param>
-    /// <returns></returns>
+    /// <returns>An awaitable task containing an instance of <see href="FileDetail"></see> containing the, you guessed it, File details...</returns>
     /// <exception cref="InvalidOperationException"></exception>
     public async Task<FileDetail> GetFileDetail(int fileId)
     {
@@ -141,7 +141,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
     /// The MarkForSoftDeletionAsync method will, as its name suggests, mark the specified file as soft deleted.
     /// </summary>
     /// <param name="fileId">The Id of the file to mark as soft deleted.</param>
-    /// <returns></returns>
+    /// <returns>An awaitable task containing a string with the status of the update.</returns>
     public async Task<string> MarkForSoftDeletionAsync(int fileId)
     {
         try
@@ -154,7 +154,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
                             ? "Marked for soft deletion"
                             : await response.Content.ReadAsStringAsync();
         }
-        catch (HttpRequestException ex)
+        catch(HttpRequestException ex)
         {
             logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
 
@@ -166,7 +166,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
     /// The UndoMarkForSoftDeletionAsync method will, as its name suggests, unmark the specified file as soft deleted.
     /// </summary>
     /// <param name="fileId">The Id of the file to unmark as soft deleted.</param>
-    /// <returns></returns>
+    /// <returns>An awaitable task containing a string with the status of the update.</returns>
     public async Task<string> UndoMarkForSoftDeletionAsync(int fileId)
     {
         try
@@ -179,7 +179,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
                 ? "Mark for soft deletion has been undone"
                 : await response.Content.ReadAsStringAsync();
         }
-        catch (HttpRequestException ex)
+        catch(HttpRequestException ex)
         {
             logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
             return ex.Message;
@@ -190,7 +190,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
     /// The MarkForHardDeletionAsync method will, as its name suggests, mark the specified file as hard deleted.
     /// </summary>
     /// <param name="fileId">The Id of the file to mark as hard deleted.</param>
-    /// <returns></returns>
+    /// <returns>An awaitable task containing a string with the status of the update.</returns>
     public async Task<string> MarkForHardDeletionAsync(int fileId)
     {
         try
@@ -203,7 +203,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
                             ? "Marked for hard deletion."
                             : await response.Content.ReadAsStringAsync();
         }
-        catch (HttpRequestException ex)
+        catch(HttpRequestException ex)
         {
             logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
 
@@ -215,7 +215,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
     /// The UndoMarkForHardDeletionAsync method will, as its name suggests, unmark the specified file as hard deleted.
     /// </summary>
     /// <param name="fileId">The Id of the file to unmark as hard deleted.</param>
-    /// <returns></returns>
+    /// <returns>An awaitable task containing a string with the status of the update.</returns>
     public async Task<string> UndoMarkForHardDeletionAsync(int fileId)
     {
         try
@@ -228,7 +228,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
                             ? "Mark for hard deletion has been undone"
                             : await response.Content.ReadAsStringAsync();
         }
-        catch (HttpRequestException ex)
+        catch(HttpRequestException ex)
         {
             logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
 
@@ -240,7 +240,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
     /// The MarkForMovingAsync method will, as its name suggests, mark the specified file as requiring moving.
     /// </summary>
     /// <param name="fileId">The Id of the file to mark as move required.</param>
-    /// <returns></returns>
+    /// <returns>An awaitable task containing a string with the status of the update.</returns>
     public async Task<string> MarkForMovingAsync(int fileId)
     {
         try
@@ -253,7 +253,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
                             ? "Mark for moving was successful"
                             : await response.Content.ReadAsStringAsync();
         }
-        catch (HttpRequestException ex)
+        catch(HttpRequestException ex)
         {
             logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
 
@@ -265,7 +265,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
     /// The UndoMarkForMovingAsync method will, as its name suggests, unmark the specified file as requiring moving.
     /// </summary>
     /// <param name="fileId">The Id of the file to unmark as move required.</param>
-    /// <returns></returns>
+    /// <returns>An awaitable task containing a string with the status of the update.</returns>
     public async Task<string> UndoMarkForMovingAsync(int fileId)
     {
         try
@@ -278,11 +278,30 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
                             ? "Undo mark for moving was successful"
                             : await response.Content.ReadAsStringAsync();
         }
-        catch (HttpRequestException ex)
+        catch(HttpRequestException ex)
         {
             logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
 
             return ex.Message;
         }
+    }
+
+    /// <summary>
+    /// The UpdateFileAsync method will, as the name suggests, update the file - currently, the directory is the only thing to change.
+    /// </summary>
+    /// <param name="directoryChangeRequest">An instance of the <see href="DirectoryChangeRequest"></see> class used to control the file update.</param>
+    /// <returns>An awaitable task.</returns>
+    public async Task<string> UpdateFileAsync(DirectoryChangeRequest directoryChangeRequest)
+    {
+        var httpContent = new StringContent(directoryChangeRequest.ToString(), Encoding.UTF8, "application/json");
+        var response = await httpClient.PutAsync($"api/files/update-directory", httpContent);
+
+        _ = response.EnsureSuccessStatusCode();
+
+        logger.LogInformation("Update File {DirectoryChangeRequest} was {Status}", directoryChangeRequest.ToString(), response.StatusCode);
+
+        return response.IsSuccessStatusCode
+                        ? "The file details were updated successfully"
+                        : await response.Content.ReadAsStringAsync();
     }
 }

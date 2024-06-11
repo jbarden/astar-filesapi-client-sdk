@@ -363,4 +363,26 @@ public class FilesApiClientShould
 
         response.Name.Should().Be("Test File Name");
     }
+
+    [Fact]
+    public async Task ReturnExpectedResponseFromTheUpdateFileAsyncWhenAnErrorOccurs()
+    {
+        var handler = new MockHttpRequestExceptionErrorHttpMessageHandler();
+        var sut = FilesApiClientFactory.Create(handler);
+
+        Func<Task> sutMethod = async () => await sut.UpdateFileAsync(new());
+
+        await sutMethod.Should().ThrowAsync<HttpRequestException>();
+    }
+
+    [Fact]
+    public async Task ReturnExpectedResponseFromTheUpdateFileAsyncEndpoint()
+    {
+        var handler = new MockSuccessHttpMessageHandler("FileDetail");
+        var sut = FilesApiClientFactory.Create(handler);
+
+        var response = await sut.UpdateFileAsync(new());
+
+        response.Should().Be("The file details were updated successfully");
+    }
 }

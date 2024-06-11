@@ -60,7 +60,7 @@
             The GetFileDetail method will, as its name suggests, get the file details of the specified file.
             </summary>
             <param name="fileId">The Id of the file detail to retrieve from the database.</param>
-            <returns></returns>
+            <returns>An awaitable task containing an instance of <see href="FileDetail"></see> containing the, you guessed it, File details...</returns>
             <exception cref="T:System.InvalidOperationException"></exception>
         </member>
         <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.MarkForSoftDeletionAsync(System.Int32)">
@@ -68,42 +68,49 @@
             The MarkForSoftDeletionAsync method will, as its name suggests, mark the specified file as soft deleted.
             </summary>
             <param name="fileId">The Id of the file to mark as soft deleted.</param>
-            <returns></returns>
+            <returns>An awaitable task containing a string with the status of the update.</returns>
         </member>
         <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.UndoMarkForSoftDeletionAsync(System.Int32)">
             <summary>
             The UndoMarkForSoftDeletionAsync method will, as its name suggests, unmark the specified file as soft deleted.
             </summary>
             <param name="fileId">The Id of the file to unmark as soft deleted.</param>
-            <returns></returns>
+            <returns>An awaitable task containing a string with the status of the update.</returns>
         </member>
         <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.MarkForHardDeletionAsync(System.Int32)">
             <summary>
             The MarkForHardDeletionAsync method will, as its name suggests, mark the specified file as hard deleted.
             </summary>
             <param name="fileId">The Id of the file to mark as hard deleted.</param>
-            <returns></returns>
+            <returns>An awaitable task containing a string with the status of the update.</returns>
         </member>
         <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.UndoMarkForHardDeletionAsync(System.Int32)">
             <summary>
             The UndoMarkForHardDeletionAsync method will, as its name suggests, unmark the specified file as hard deleted.
             </summary>
             <param name="fileId">The Id of the file to unmark as hard deleted.</param>
-            <returns></returns>
+            <returns>An awaitable task containing a string with the status of the update.</returns>
         </member>
         <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.MarkForMovingAsync(System.Int32)">
             <summary>
             The MarkForMovingAsync method will, as its name suggests, mark the specified file as requiring moving.
             </summary>
             <param name="fileId">The Id of the file to mark as move required.</param>
-            <returns></returns>
+            <returns>An awaitable task containing a string with the status of the update.</returns>
         </member>
         <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.UndoMarkForMovingAsync(System.Int32)">
             <summary>
             The UndoMarkForMovingAsync method will, as its name suggests, unmark the specified file as requiring moving.
             </summary>
             <param name="fileId">The Id of the file to unmark as move required.</param>
-            <returns></returns>
+            <returns>An awaitable task containing a string with the status of the update.</returns>
+        </member>
+        <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.UpdateFileAsync(AStar.FilesApi.Client.SDK.Models.DirectoryChangeRequest)">
+            <summary>
+            The UpdateFileAsync method will, as the name suggests, update the file - currently, the directory is the only thing to change.
+            </summary>
+            <param name="directoryChangeRequest">An instance of the <see href="DirectoryChangeRequest"></see> class used to control the file update.</param>
+            <returns>An awaitable task.</returns>
         </member>
         <member name="T:AStar.FilesApi.Client.SDK.FilesApi.FilesApiConfiguration">
             <summary>
