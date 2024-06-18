@@ -10,7 +10,7 @@ public class FileAccessDetail
     /// <summary>
     /// Gets or sets the Id of the File Access Detail.
     /// </summary>
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     /// <summary>
     /// Gets or sets the date the file details were last updated. I know, shocking...

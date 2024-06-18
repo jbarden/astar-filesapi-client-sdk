@@ -133,7 +133,7 @@ public class FilesApiClientShould
         var handler = new MockSuccessHttpMessageHandler("");
         var sut = FilesApiClientFactory.Create(handler);
 
-        var response = await sut.MarkForSoftDeletionAsync(1);
+        var response = await sut.MarkForSoftDeletionAsync(Guid.NewGuid());
 
         response.Should().Be("Marked for soft deletion");
     }
@@ -144,7 +144,7 @@ public class FilesApiClientShould
         var handler = new MockHttpRequestExceptionErrorHttpMessageHandler();
         var sut = FilesApiClientFactory.Create(handler);
 
-        var response = await sut.MarkForSoftDeletionAsync(1);
+        var response = await sut.MarkForSoftDeletionAsync(Guid.NewGuid());
 
         response.Should().Be("Exception of type 'System.Net.Http.HttpRequestException' was thrown.");
     }
@@ -154,7 +154,7 @@ public class FilesApiClientShould
     {
         var sut = FilesApiClientFactory.CreateInternalServerErrorClient("Delete failed...");
 
-        var response = await sut.MarkForSoftDeletionAsync(1);
+        var response = await sut.MarkForSoftDeletionAsync(Guid.NewGuid());
 
         response.Should().Be("Delete failed...");
     }
@@ -164,7 +164,7 @@ public class FilesApiClientShould
     {
         var sut = FilesApiClientFactory.CreateInternalServerErrorClient("Undo mark for deletion failed...");
 
-        var response = await sut.UndoMarkForSoftDeletionAsync(1);
+        var response = await sut.UndoMarkForSoftDeletionAsync(Guid.NewGuid());
 
         response.Should().Be("Undo mark for deletion failed...");
     }
@@ -175,7 +175,7 @@ public class FilesApiClientShould
         var handler = new MockDeletionSuccessHttpMessageHandler();
         var sut = FilesApiClientFactory.Create(handler);
 
-        var response = await sut.UndoMarkForSoftDeletionAsync(1);
+        var response = await sut.UndoMarkForSoftDeletionAsync(Guid.NewGuid());
 
         response.Should().Be("Mark for soft deletion has been undone");
     }
@@ -186,7 +186,7 @@ public class FilesApiClientShould
         var handler = new MockHttpRequestExceptionErrorHttpMessageHandler();
         var sut = FilesApiClientFactory.Create(handler);
 
-        var response = await sut.UndoMarkForSoftDeletionAsync(1);
+        var response = await sut.UndoMarkForSoftDeletionAsync(Guid.NewGuid());
 
         response.Should().Be("Exception of type 'System.Net.Http.HttpRequestException' was thrown.");
     }
@@ -197,7 +197,7 @@ public class FilesApiClientShould
         var handler = new MockDeletionSuccessHttpMessageHandler();
         var sut = FilesApiClientFactory.Create(handler);
 
-        var response = await sut.MarkForHardDeletionAsync(1);
+        var response = await sut.MarkForHardDeletionAsync(Guid.NewGuid());
 
         response.Should().Be("Marked for hard deletion.");
     }
@@ -208,7 +208,7 @@ public class FilesApiClientShould
         var handler = new MockHttpRequestExceptionErrorHttpMessageHandler();
         var sut = FilesApiClientFactory.Create(handler);
 
-        var response = await sut.MarkForHardDeletionAsync(1);
+        var response = await sut.MarkForHardDeletionAsync(Guid.NewGuid());
 
         response.Should().Be("Exception of type 'System.Net.Http.HttpRequestException' was thrown.");
     }
@@ -218,7 +218,7 @@ public class FilesApiClientShould
     {
         var sut = FilesApiClientFactory.CreateInternalServerErrorClient("Delete failed...");
 
-        var response = await sut.MarkForHardDeletionAsync(1);
+        var response = await sut.MarkForHardDeletionAsync(Guid.NewGuid());
 
         response.Should().Be("Delete failed...");
     }
@@ -229,7 +229,7 @@ public class FilesApiClientShould
         var handler = new MockSuccessHttpMessageHandler("");
         var sut = FilesApiClientFactory.Create(handler);
 
-        var response = await sut.UndoMarkForHardDeletionAsync(1);
+        var response = await sut.UndoMarkForHardDeletionAsync(Guid.NewGuid());
 
         response.Should().Be("Mark for hard deletion has been undone");
     }
@@ -240,7 +240,7 @@ public class FilesApiClientShould
         var handler = new MockHttpRequestExceptionErrorHttpMessageHandler();
         var sut = FilesApiClientFactory.Create(handler);
 
-        var response = await sut.UndoMarkForHardDeletionAsync(1);
+        var response = await sut.UndoMarkForHardDeletionAsync(Guid.NewGuid());
 
         response.Should().Be("Exception of type 'System.Net.Http.HttpRequestException' was thrown.");
     }
@@ -250,7 +250,7 @@ public class FilesApiClientShould
     {
         var sut = FilesApiClientFactory.CreateInternalServerErrorClient("Undo mark for deletion failed...");
 
-        var response = await sut.UndoMarkForHardDeletionAsync(1);
+        var response = await sut.UndoMarkForHardDeletionAsync(Guid.NewGuid());
 
         response.Should().Be("Undo mark for deletion failed...");
     }
@@ -261,7 +261,7 @@ public class FilesApiClientShould
         var handler = new MockDeletionSuccessHttpMessageHandler();
         var sut = FilesApiClientFactory.Create(handler);
 
-        var response = await sut.MarkForMovingAsync(1);
+        var response = await sut.MarkForMovingAsync(Guid.NewGuid());
 
         response.Should().Be("Mark for moving was successful");
     }
@@ -272,7 +272,7 @@ public class FilesApiClientShould
         var handler = new MockHttpRequestExceptionErrorHttpMessageHandler();
         var sut = FilesApiClientFactory.Create(handler);
 
-        var response = await sut.MarkForMovingAsync(1);
+        var response = await sut.MarkForMovingAsync(Guid.NewGuid());
 
         response.Should().Be("Exception of type 'System.Net.Http.HttpRequestException' was thrown.");
     }
@@ -282,7 +282,7 @@ public class FilesApiClientShould
     {
         var sut = FilesApiClientFactory.CreateInternalServerErrorClient("Delete failed...");
 
-        var response = await sut.MarkForMovingAsync(1);
+        var response = await sut.MarkForMovingAsync(Guid.NewGuid());
 
         response.Should().Be("Delete failed...");
     }
@@ -293,7 +293,7 @@ public class FilesApiClientShould
         var handler = new MockSuccessHttpMessageHandler("");
         var sut = FilesApiClientFactory.Create(handler);
 
-        var response = await sut.UndoMarkForMovingAsync(1);
+        var response = await sut.UndoMarkForMovingAsync(Guid.NewGuid());
 
         response.Should().Be("Undo mark for moving was successful");
     }
@@ -304,7 +304,7 @@ public class FilesApiClientShould
         var handler = new MockHttpRequestExceptionErrorHttpMessageHandler();
         var sut = FilesApiClientFactory.Create(handler);
 
-        var response = await sut.UndoMarkForMovingAsync(1);
+        var response = await sut.UndoMarkForMovingAsync(Guid.NewGuid());
 
         response.Should().Be("Exception of type 'System.Net.Http.HttpRequestException' was thrown.");
     }
@@ -314,7 +314,7 @@ public class FilesApiClientShould
     {
         var sut = FilesApiClientFactory.CreateInternalServerErrorClient("Undo mark for deletion failed...");
 
-        var response = await sut.UndoMarkForMovingAsync(1);
+        var response = await sut.UndoMarkForMovingAsync(Guid.NewGuid());
 
         response.Should().Be("Undo mark for deletion failed...");
     }
@@ -325,7 +325,7 @@ public class FilesApiClientShould
         var handler = new MockHttpRequestExceptionErrorHttpMessageHandler();
         var sut = FilesApiClientFactory.Create(handler);
 
-        Func<Task> sutMethod = async () => await sut.GetFileAccessDetail(1);
+        Func<Task> sutMethod = async () => await sut.GetFileAccessDetail(Guid.NewGuid());
 
         await sutMethod.Should().ThrowAsync<HttpRequestException>();
     }
@@ -333,7 +333,7 @@ public class FilesApiClientShould
     [Fact]
     public async Task ReturnExpectedResponseFromTheGetFileAccessDetailEndpoint()
     {
-        const int mockFileId = 123456789;
+        var mockFileId = Guid.NewGuid();
         var handler = new MockSuccessHttpMessageHandler("FileAccessDetail");
         var sut = FilesApiClientFactory.Create(handler);
 
@@ -348,7 +348,7 @@ public class FilesApiClientShould
         var handler = new MockHttpRequestExceptionErrorHttpMessageHandler();
         var sut = FilesApiClientFactory.Create(handler);
 
-        Func<Task> sutMethod = async () => await sut.GetFileDetail(1);
+        Func<Task> sutMethod = async () => await sut.GetFileDetail(Guid.NewGuid());
 
         await sutMethod.Should().ThrowAsync<HttpRequestException>();
     }
@@ -359,7 +359,7 @@ public class FilesApiClientShould
         var handler = new MockSuccessHttpMessageHandler("FileDetail");
         var sut = FilesApiClientFactory.Create(handler);
 
-        var response = await sut.GetFileDetail(1);
+        var response = await sut.GetFileDetail(Guid.NewGuid());
 
         response.Name.Should().Be("Test File Name");
     }

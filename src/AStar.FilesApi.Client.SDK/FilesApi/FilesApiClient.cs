@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Text.Json;
+using AStar.Api.HealthChecks;
 using AStar.FilesApi.Client.SDK.Models;
 using AStar.Utilities;
 using Microsoft.Extensions.Logging;
@@ -40,7 +41,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
     /// <returns>The count of the matching files or -1 if an error occurred.</returns>
     public async Task<int> GetFilesCountAsync(SearchParameters searchParameters)
     {
-        var response = await httpClient.GetAsync($"api/files/count?{searchParameters}");
+        var response = await httpClient.GetAsync($"api/files/count?{searchParameters.ToQueryString()}");
 
         logger.LogInformation("Getting the count of matching files.");
 
@@ -56,7 +57,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
     /// <returns>The count of the matching duplicate files or -1 if an error occurred.</returns>
     public async Task<int> GetDuplicateFilesCountAsync(SearchParameters searchParameters)
     {
-        var response = await httpClient.GetAsync($"api/files/count-duplicates?{searchParameters}");
+        var response = await httpClient.GetAsync($"api/files/count-duplicates?{searchParameters.ToQueryString()}");
 
         logger.LogInformation("Getting the count of matching duplicate files.");
 
@@ -73,7 +74,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
     /// <exception cref="InvalidOperationException"></exception>
     public async Task<IEnumerable<FileDetail>> GetFilesAsync(SearchParameters searchParameters)
     {
-        var response = await httpClient.GetAsync($"api/files/list?{searchParameters}");
+        var response = await httpClient.GetAsync($"api/files/list?{searchParameters.ToQueryString()}");
 
         logger.LogInformation("Getting the list of files matching the criteria.");
         var content = await response.Content.ReadAsStringAsync();
@@ -91,7 +92,8 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
     /// <exception cref="InvalidOperationException"></exception>
     public async Task<IReadOnlyCollection<DuplicateGroup>> GetDuplicateFilesAsync(SearchParameters searchParameters)
     {
-        var response = await httpClient.GetAsync($"api/files/list-duplicates?{searchParameters}");
+        var queryString = searchParameters.ToQueryString();
+        var response = await httpClient.GetAsync($"api/files/list-duplicates?{queryString}");
 
         logger.LogInformation("Getting the list of duplicate files matching the criteria.");
         var content = await response.Content.ReadAsStringAsync();
@@ -107,7 +109,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
     /// <param name="fileId">The Id of the file to retrieve the File Access Details from the database.</param>
     /// <returns>An instance of <see href="FileAccessDetail"></see> for the specified File Id.</returns>
     /// <exception cref="InvalidOperationException"></exception>
-    public async Task<FileAccessDetail> GetFileAccessDetail(int fileId)
+    public async Task<FileAccessDetail> GetFileAccessDetail(Guid fileId)
     {
         var response = await httpClient.GetAsync($"api/files/access-detail?request={fileId}");
 
@@ -125,7 +127,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
     /// <param name="fileId">The Id of the file detail to retrieve from the database.</param>
     /// <returns>An awaitable task containing an instance of <see href="FileDetail"></see> containing the, you guessed it, File details...</returns>
     /// <exception cref="InvalidOperationException"></exception>
-    public async Task<FileDetail> GetFileDetail(int fileId)
+    public async Task<FileDetail> GetFileDetail(Guid fileId)
     {
         var response = await httpClient.GetAsync($"api/files/detail?request={fileId}");
 
@@ -142,7 +144,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
     /// </summary>
     /// <param name="fileId">The Id of the file to mark as soft deleted.</param>
     /// <returns>An awaitable task containing a string with the status of the update.</returns>
-    public async Task<string> MarkForSoftDeletionAsync(int fileId)
+    public async Task<string> MarkForSoftDeletionAsync(Guid fileId)
     {
         try
         {
@@ -167,7 +169,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
     /// </summary>
     /// <param name="fileId">The Id of the file to unmark as soft deleted.</param>
     /// <returns>An awaitable task containing a string with the status of the update.</returns>
-    public async Task<string> UndoMarkForSoftDeletionAsync(int fileId)
+    public async Task<string> UndoMarkForSoftDeletionAsync(Guid fileId)
     {
         try
         {
@@ -191,7 +193,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
     /// </summary>
     /// <param name="fileId">The Id of the file to mark as hard deleted.</param>
     /// <returns>An awaitable task containing a string with the status of the update.</returns>
-    public async Task<string> MarkForHardDeletionAsync(int fileId)
+    public async Task<string> MarkForHardDeletionAsync(Guid fileId)
     {
         try
         {
@@ -216,7 +218,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
     /// </summary>
     /// <param name="fileId">The Id of the file to unmark as hard deleted.</param>
     /// <returns>An awaitable task containing a string with the status of the update.</returns>
-    public async Task<string> UndoMarkForHardDeletionAsync(int fileId)
+    public async Task<string> UndoMarkForHardDeletionAsync(Guid fileId)
     {
         try
         {
@@ -241,7 +243,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
     /// </summary>
     /// <param name="fileId">The Id of the file to mark as move required.</param>
     /// <returns>An awaitable task containing a string with the status of the update.</returns>
-    public async Task<string> MarkForMovingAsync(int fileId)
+    public async Task<string> MarkForMovingAsync(Guid fileId)
     {
         try
         {
@@ -266,7 +268,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
     /// </summary>
     /// <param name="fileId">The Id of the file to unmark as move required.</param>
     /// <returns>An awaitable task containing a string with the status of the update.</returns>
-    public async Task<string> UndoMarkForMovingAsync(int fileId)
+    public async Task<string> UndoMarkForMovingAsync(Guid fileId)
     {
         try
         {
@@ -298,7 +300,7 @@ public class FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logge
 
         _ = response.EnsureSuccessStatusCode();
 
-        logger.LogInformation("Update File {DirectoryChangeRequest} was {Status}", directoryChangeRequest.ToString(), response.StatusCode);
+        logger.LogInformation("Update File {DirectoryChangeRequest} response was: {Status}", directoryChangeRequest.ToString(), response.StatusCode);
 
         return response.IsSuccessStatusCode
                         ? "The file details were updated successfully"

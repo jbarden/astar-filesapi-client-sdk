@@ -10,7 +10,7 @@ public class FileDetail
     /// <summary>
     /// Gets or sets the Id of the File Detail.
     /// </summary>
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     /// <summary>
     /// Gets or sets the Name of the file.
