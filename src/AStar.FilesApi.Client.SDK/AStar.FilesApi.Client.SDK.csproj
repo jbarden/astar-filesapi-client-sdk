@@ -7,7 +7,7 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>$(MSBuildProjectName).xml</DocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>0.2.0</Version>
+    <Version>0.1.0</Version>
     <Company>AStar Dev</Company>
     <Copyright>AStar Dev 2024</Copyright>
     <PackageIcon>AStar.png</PackageIcon>

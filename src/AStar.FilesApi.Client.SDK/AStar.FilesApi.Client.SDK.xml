@@ -47,7 +47,7 @@
             <returns>An enumerable list of <see href="DuplicateGroup"></see> instances.</returns>
             <exception cref="T:System.InvalidOperationException"></exception>
         </member>
-        <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.GetFileAccessDetail(System.Int32)">
+        <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.GetFileAccessDetail(System.Guid)">
             <summary>
             The GetFileAccessDetail method will, as its name suggests, get the file access details for the specified file.
             </summary>
@@ -55,7 +55,7 @@
             <returns>An instance of <see href="FileAccessDetail"></see> for the specified File Id.</returns>
             <exception cref="T:System.InvalidOperationException"></exception>
         </member>
-        <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.GetFileDetail(System.Int32)">
+        <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.GetFileDetail(System.Guid)">
             <summary>
             The GetFileDetail method will, as its name suggests, get the file details of the specified file.
             </summary>
@@ -63,42 +63,42 @@
             <returns>An awaitable task containing an instance of <see href="FileDetail"></see> containing the, you guessed it, File details...</returns>
             <exception cref="T:System.InvalidOperationException"></exception>
         </member>
-        <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.MarkForSoftDeletionAsync(System.Int32)">
+        <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.MarkForSoftDeletionAsync(System.Guid)">
             <summary>
             The MarkForSoftDeletionAsync method will, as its name suggests, mark the specified file as soft deleted.
             </summary>
             <param name="fileId">The Id of the file to mark as soft deleted.</param>
             <returns>An awaitable task containing a string with the status of the update.</returns>
         </member>
-        <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.UndoMarkForSoftDeletionAsync(System.Int32)">
+        <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.UndoMarkForSoftDeletionAsync(System.Guid)">
             <summary>
             The UndoMarkForSoftDeletionAsync method will, as its name suggests, unmark the specified file as soft deleted.
             </summary>
             <param name="fileId">The Id of the file to unmark as soft deleted.</param>
             <returns>An awaitable task containing a string with the status of the update.</returns>
         </member>
-        <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.MarkForHardDeletionAsync(System.Int32)">
+        <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.MarkForHardDeletionAsync(System.Guid)">
             <summary>
             The MarkForHardDeletionAsync method will, as its name suggests, mark the specified file as hard deleted.
             </summary>
             <param name="fileId">The Id of the file to mark as hard deleted.</param>
             <returns>An awaitable task containing a string with the status of the update.</returns>
         </member>
-        <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.UndoMarkForHardDeletionAsync(System.Int32)">
+        <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.UndoMarkForHardDeletionAsync(System.Guid)">
             <summary>
             The UndoMarkForHardDeletionAsync method will, as its name suggests, unmark the specified file as hard deleted.
             </summary>
             <param name="fileId">The Id of the file to unmark as hard deleted.</param>
             <returns>An awaitable task containing a string with the status of the update.</returns>
         </member>
-        <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.MarkForMovingAsync(System.Int32)">
+        <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.MarkForMovingAsync(System.Guid)">
             <summary>
             The MarkForMovingAsync method will, as its name suggests, mark the specified file as requiring moving.
             </summary>
             <param name="fileId">The Id of the file to mark as move required.</param>
             <returns>An awaitable task containing a string with the status of the update.</returns>
         </member>
-        <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.UndoMarkForMovingAsync(System.Int32)">
+        <member name="M:AStar.FilesApi.Client.SDK.FilesApi.FilesApiClient.UndoMarkForMovingAsync(System.Guid)">
             <summary>
             The UndoMarkForMovingAsync method will, as its name suggests, unmark the specified file as requiring moving.
             </summary>
@@ -126,17 +126,6 @@
             <summary>
             Gets or sets the Base URL for the API.
             </summary>
-        </member>
-        <member name="T:AStar.FilesApi.Client.SDK.IApiClient">
-            <summary>
-            The <see href="IApiClient"></see> interface.
-            </summary>
-        </member>
-        <member name="M:AStar.FilesApi.Client.SDK.IApiClient.GetHealthAsync">
-            <summary>
-            The GetHealthAsync method will return the basic Health Status of the API.
-            </summary>
-            <returns>An instance of the <see href="HealthStatusResponse"></see> class containing the text representation of the API Health Status.</returns>
         </member>
         <member name="T:AStar.FilesApi.Client.SDK.Models.DuplicateGroup">
             <summary>
@@ -303,22 +292,6 @@
             </summary>
         </member>
         <member name="M:AStar.FilesApi.Client.SDK.Models.FileDimensionsWithSize.ToString">
-            <summary>
-            Returns this object in JSON format.
-            </summary>
-            <returns>This object serialized as a JSON object.</returns>
-        </member>
-        <member name="T:AStar.FilesApi.Client.SDK.Models.HealthStatusResponse">
-            <summary>
-            The <see href="HealthStatusResponse"></see> class.
-            </summary>
-        </member>
-        <member name="P:AStar.FilesApi.Client.SDK.Models.HealthStatusResponse.Status">
-            <summary>
-            Gets or sets the Status for the Health Check.
-            </summary>
-        </member>
-        <member name="M:AStar.FilesApi.Client.SDK.Models.HealthStatusResponse.ToString">
             <summary>
             Returns this object in JSON format.
             </summary>
