@@ -16,11 +16,12 @@
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <IncludeSymbols>True</IncludeSymbols>
     <Authors>Jason Barden</Authors>
-    <Description>This package contans the SDK for access the Files AStar API.
+    <Description>This package contains the SDK for access the Files AStar API.
 It is not intended for public use but is available if it helps you.</Description>
     <PackageProjectUrl>https://github.com/jbarden/astar-filesapi-client-sdk</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jbarden/astar-filesapi-client-sdk.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
   <ItemGroup>
